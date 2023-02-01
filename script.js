@@ -76,6 +76,7 @@ controlledCheckbox.addEventListener('click', event => {
 4d Gör så att man även kan använda enter-tangenten för att lägga till ett ord.
 */
 function addWord(event) {
+	// Vi behöver inte parametern "event" just den här gången
 	const word = wordList.input.value
 	const li = document.createElement('li')
 	li.innerText = word
