@@ -11,6 +11,12 @@ const button = document.querySelector('#inner-button')
 const openOverlayButton = document.querySelector('#open-overlay')
 const lockCheckbox = document.querySelector('#lock-checkbox')
 const controlledCheckbox = document.querySelector('#controlled-checkbox')
+const wordList = {
+	input: document.querySelector('#word-list > input'),
+	button: document.querySelector('#word-list > button'),
+	list: document.querySelector('#word-list > ul')
+}
+
 
 // State (ingen)
 
@@ -60,3 +66,48 @@ controlledCheckbox.addEventListener('click', event => {
 		event.preventDefault()
 	}
 })
+
+
+/*
+Övning 10.4
+4a Gör en webbsida som ska innehålla en lista (ul/ol) med ord. Det ska även finnas ett input-fält och en button. När användaren skriver ett ord i input-fältet och klickar på knappen, ska ordet läggas till i listan.
+4b Input-fältet ska tömmas när man lagt till ett värde.
+4c knappen ska bara gå att klicka på, när fältet inte är tomt.
+4d Gör så att man även kan använda enter-tangenten för att lägga till ett ord.
+*/
+function addWord(event) {
+	const word = wordList.input.value
+	const li = document.createElement('li')
+	li.innerText = word
+	// li.append(word)  <- fungerar också
+	wordList.list.append(li)
+
+	wordList.input.value = ''
+	wordList.button.disabled = true
+}
+wordList.button.addEventListener('click', addWord)
+
+wordList.input.addEventListener('input', event => {
+	// console.log('Input event on text field: ', event.target.value)
+	
+	const value = event.target.value  // Värdet i textfältet
+	if( value === '' ) {
+		wordList.button.disabled = true
+	} else {
+		wordList.button.disabled = false
+	}
+})
+
+wordList.input.addEventListener('keydown', event => {
+	// console.log('Keydown event on text field, key=', event.key)
+
+	if (event.key === 'Enter' ) {
+		addWord()
+	}
+})
+
+// Datalogiska principer
+// 1. Decomposition
+// 2. Pattern recognition
+// 3. Abstraction
+// 4. Algorithm design
