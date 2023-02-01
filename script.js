@@ -9,6 +9,8 @@ const body = document.querySelector('body')
 const container = document.querySelector('.container')
 const button = document.querySelector('#inner-button')
 const openOverlayButton = document.querySelector('#open-overlay')
+const lockCheckbox = document.querySelector('#lock-checkbox')
+const controlledCheckbox = document.querySelector('#controlled-checkbox')
 
 // State (ingen)
 
@@ -44,4 +46,17 @@ openOverlayButton.addEventListener('click', () => {
 
 	// <div class="overlay"> <div> Content </div> </div>
 	// TODO: kolla in <dialog>
+})
+
+let checkboxIsLocked = false
+
+lockCheckbox.addEventListener('input', () => {
+	checkboxIsLocked = !checkboxIsLocked
+	console.log('Lock checkbox changed, is locked: ', checkboxIsLocked)
+})
+controlledCheckbox.addEventListener('click', event => {
+	console.log('Controlled checkbox changed, is locked: ', checkboxIsLocked)
+	if( checkboxIsLocked ) {
+		event.preventDefault()
+	}
 })

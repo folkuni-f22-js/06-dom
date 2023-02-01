@@ -29,3 +29,8 @@ body {
 	border-radius: 0.5em;
 	/* TODO: box-shadow */
 }
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
