@@ -16,6 +16,12 @@ const wordList = {
 	button: document.querySelector('#word-list > button'),
 	list: document.querySelector('#word-list > ul')
 }
+const remember = {
+	heading: document.querySelector('#remember > h2'),
+	input: document.querySelector('#remember > .name'),
+	email: document.querySelector('#remember > .email'),
+	button: document.querySelector('#remember > button')
+}
 
 
 // State (ingen)
@@ -112,3 +118,38 @@ wordList.input.addEventListener('keydown', event => {
 // 2. Pattern recognition
 // 3. Abstraction
 // 4. Algorithm design
+
+// Key för localStorage
+const LS_KEY = '06-dom-name'
+
+remember.input.addEventListener('input', event => {
+	const value = event.target.value
+	// localStorage.setItem(LS_KEY, value)
+
+	renderRememberHeading(value)
+})
+
+remember.button.addEventListener('click', () => {
+	const name = remember.input.value
+	const email = remember.email.value
+	const object = { name: name, email: email }
+	localStorage.setItem(LS_KEY, JSON.stringify(object))
+})
+
+
+
+function renderRememberHeading(value) {
+	remember.heading.innerText = `Välkommen ${value}!`
+}
+
+
+// När webbsidan laddas
+const object = localStorage.getItem(LS_KEY)
+if( object !== '' && object !== null ) {
+	let realObject = JSON.parse(object)
+	const savedName = realObject.name
+	const savedEmail = realObject.email
+	renderRememberHeading(savedName)
+	remember.input.value = savedName
+	remember.email.value = savedEmail
+}
