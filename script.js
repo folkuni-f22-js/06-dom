@@ -132,8 +132,16 @@ remember.input.addEventListener('input', event => {
 remember.button.addEventListener('click', () => {
 	const name = remember.input.value
 	const email = remember.email.value
-	const object = { name: name, email: email }
-	localStorage.setItem(LS_KEY, JSON.stringify(object))
+	const object = { name: name, email: email }  // { name, email }
+	// localStorage.setItem(LS_KEY, JSON.stringify(object))
+	const string = JSON.stringify(object)
+	localStorage.setItem(LS_KEY, string)
+
+	/* Alternativ kod för funktionen
+	localStorage.setItem(LS_KEY, JSON.stringify({
+		name: remember.input.value,
+		email: remember.email.value
+	}))*/
 })
 
 
