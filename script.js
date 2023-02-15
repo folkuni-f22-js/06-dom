@@ -161,3 +161,10 @@ if( object !== '' && object !== null ) {
 	remember.input.value = savedName
 	remember.email.value = savedEmail
 }
+
+// För att ändra mer komplicerad data:
+// 1. Hämta datan från localStorage
+// 2. Gör om till JS-objekt, JSON.parse
+// 3. Gör de ändringar som behövs i objektet
+// 4. Gör om till sträng, JSON.stringify (serialisering)
+// 5. Spara strängen i localStorage
